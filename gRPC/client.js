@@ -1,3 +1,4 @@
+
 const grpc = require("@grpc/grpc-js");
 var protoLoader = require("@grpc/proto-loader");
 const PROTO_PATH = "./news.proto";
@@ -18,3 +19,11 @@ const client = new NewsService(
   "localhost:50051",
   grpc.credentials.createInsecure()
 );
+
+client.getAllNews({}, (error, news) => {
+  console.log("Response:", news);
+  if (!error) throw error
+    console.log(news);
+});
+
+module.exports = client;
