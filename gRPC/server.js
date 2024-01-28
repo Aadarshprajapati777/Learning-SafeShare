@@ -31,8 +31,16 @@ server.addService(newsProto.NewsService.service, {
     const newsId= _.request.id;
     news= news.filter((news) => news.id !== newsId);
     callback(null, newsId);
+  },
+  editNews: (_, callback)=> {
+    const newsId= _.request.id;
+    const newsItem= news.find((news) => news.id === newsId);
+    newsItem.body= _.request.body;
+    newsItem.postImage = _.request.postImage;
+    newsItem.title = _.request.title;
+    callback(null, newsItem);
+
   }
-  
 
 });
 
